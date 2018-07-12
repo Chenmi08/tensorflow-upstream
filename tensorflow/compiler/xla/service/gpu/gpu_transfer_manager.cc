@@ -22,7 +22,7 @@ limitations under the License.
 #include "llvm/IR/DataLayout.h"
 #include "tensorflow/compiler/xla/literal.h"
 #include "tensorflow/compiler/xla/literal_util.h"
-#include "tensorflow/compiler/xla/service/gpu/gpu_compiler.h"
+#include "tensorflow/compiler/xla/service/gpu/nvptx_compiler.h"
 #include "tensorflow/compiler/xla/service/gpu/outfeed_manager.h"
 #include "tensorflow/compiler/xla/shape_util.h"
 #include "tensorflow/compiler/xla/status_macros.h"
@@ -43,7 +43,7 @@ namespace xla {
 GpuTransferManager::GpuTransferManager()
     : GenericTransferManager(
           se::cuda::kCudaPlatformId,
-          /*pointer_size=*/llvm::DataLayout(gpu::GpuCompiler::kDataLayout)
+          /*pointer_size=*/llvm::DataLayout(gpu::NVPTXCompiler::kDataLayout)
               .getPointerSize(0 /* default address space */)) {}
 
 Status GpuTransferManager::TransferLiteralToInfeed(
